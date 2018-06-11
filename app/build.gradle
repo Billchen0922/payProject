@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+
+    //正式环境
+    def API_REAL_URL = "\"https://gateway.starpos.com.cn/mcg/cashier\""
+    //开发环境
+    def API_DEV_URL = "\"http://139.196.77.69:8280/mcg/cashier\""
+
+    def VERSION = "\"V2\""     //版本号
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.pay.eatt.eattpay"
+        minSdkVersion 22
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_URL", "${API_REAL_URL}"
+            buildConfigField "String", "VERSION", "${VERSION}"
+        }
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_URL", "${API_DEV_URL}"
+            buildConfigField "String", "VERSION", "${VERSION}"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    testImplementation 'junit:junit:4.12'
+    // butterknife
+    compile 'com.jakewharton:butterknife:8.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
+    testCompile 'junit:junit:4.12'
+    //二维码
+    compile 'com.google.zxing:core:3.2.1'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.7@aar'
+    compile 'cn.bingoogolapple:bga-zxing:1.1.7@aar'
+    //fast json
+    compile 'com.alibaba:fastjson:1.2.31'
+    //图片
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:support-v4:26.0.0-alpha1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
+    //友盟统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
+
+    //http协议实现包
+    compile 'org.apache.httpcomponents:httpcore:4.4.6'
+
+    //okgo必须使用
+    compile 'com.lzy.net:okgo:3.0.4'
+    //以下三个选择添加，okrx和okrx2不能同时使用
+    compile 'com.lzy.net:okrx2:+'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+}

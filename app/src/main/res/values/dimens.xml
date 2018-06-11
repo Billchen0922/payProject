@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="common_line_padding">0.5dip</dimen>
+    <dimen name="common_margin">15dip</dimen>
+    <dimen name="common_margin_view">10dip</dimen>
+    <dimen name="common_margin_top">20dip</dimen>
+    <dimen name="common_height">46dip</dimen>
+    <dimen name="common_btn_height">36dip</dimen>
+
+
+</resources>
